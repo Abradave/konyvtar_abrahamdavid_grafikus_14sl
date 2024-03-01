@@ -86,7 +86,7 @@ namespace KonyvtarGrafikus
         }
 
         internal void newBook(Book book) {
-            cmd.CommandText = "INSERT INTO `books`(`id`, `title`, `author`, `publish_year`, `page_count`) VALUES (@id, @title, @author, @publish_year, @page_count)";
+            cmd = conn.CreateCommand();
             cmd.Parameters.AddWithValue("id", book.Id);
             cmd.Parameters.AddWithValue("title", book.Title);
             cmd.Parameters.AddWithValue("author", book.Author);
