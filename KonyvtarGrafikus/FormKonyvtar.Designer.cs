@@ -37,11 +37,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numPageCount = new System.Windows.Forms.NumericUpDown();
             this.btnCommand = new System.Windows.Forms.Button();
+            this.tbId = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.numId = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numPublished)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPageCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numId)).BeginInit();
             this.SuspendLayout();
             // 
             // tbAuthor
@@ -127,34 +126,32 @@
             this.btnCommand.Text = "button1";
             this.btnCommand.UseVisualStyleBackColor = true;
             // 
+            // tbId
+            // 
+            this.tbId.Location = new System.Drawing.Point(325, 29);
+            this.tbId.Name = "tbId";
+            this.tbId.ReadOnly = true;
+            this.tbId.Size = new System.Drawing.Size(100, 20);
+            this.tbId.TabIndex = 12;
+            this.tbId.TabStop = false;
+            this.tbId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(269, 14);
+            this.label5.Location = new System.Drawing.Point(363, 13);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(18, 13);
             this.label5.TabIndex = 13;
             this.label5.Text = "ID";
-            // 
-            // numId
-            // 
-            this.numId.Location = new System.Drawing.Point(272, 30);
-            this.numId.Maximum = new decimal(new int[] {
-            -1511769059,
-            0,
-            0,
-            0});
-            this.numId.Name = "numId";
-            this.numId.Size = new System.Drawing.Size(212, 20);
-            this.numId.TabIndex = 14;
             // 
             // FormKonyvtar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.numId);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.tbId);
             this.Controls.Add(this.btnCommand);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.numPageCount);
@@ -169,7 +166,6 @@
             this.Load += new System.EventHandler(this.FormKonyvtar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPublished)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPageCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numId)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,7 +182,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numPageCount;
         private System.Windows.Forms.Button btnCommand;
+        private System.Windows.Forms.TextBox tbId;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numId;
     }
 }

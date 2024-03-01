@@ -15,11 +15,6 @@ namespace KonyvtarGrafikus
         public Form1()
         {
             InitializeComponent();
-            lbBooks.Items.Clear();
-            foreach (Book item in Program.books)
-            {
-                lbBooks.Items.Add(item);
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -41,22 +36,26 @@ namespace KonyvtarGrafikus
         {
             if (lbBooks.SelectedIndex < 0)
             {
-                MessageBox.Show("Nincs kiválaszttott elem");
+                MessageBox.Show("Nothing is selected!");
                 return;
             }
             FormKonyvtar formKonyvtar = new FormKonyvtar("edit");
             formKonyvtar.ShowDialog();
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (lbBooks.SelectedIndex < 0)
             {
-                MessageBox.Show("Nincs kiválaszttott elem");
+                MessageBox.Show("Nothing is selected!");
                 return;
             }
-            FormKonyvtar formKonyvtar = new FormKonyvtar("delete");
-            formKonyvtar.ShowDialog();
+            if (MessageBox.Show("Are you sure?") == DialogResult.OK) 
+            {
+                Book book = (Book)lbBooks.SelectedItem;
+                Program.stat.deleteBook(book);
+            }
         }
     }
 }

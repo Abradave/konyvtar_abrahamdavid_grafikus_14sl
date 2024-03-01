@@ -36,27 +36,17 @@ namespace KonyvtarGrafikus
                     btnCommand.Click += new EventHandler(updateBook);
                     DataLoad();
                     break;
-                case "delete":
-                    this.Text = "Delete";
-                    btnCommand.Text = "Delete Book";
-                    btnCommand.BackColor = Color.Red;
-                    btnCommand.ForeColor = Color.White;
-                    btnCommand.Click += new EventHandler(deleteBook);
-                    DataLoad();
-                    break;
             }
-        }
-
-        private void deleteBook(object sender, EventArgs e)
-        {
-            Book book = createBook();
-            Program.stat.deleteBook(book);
-            this.Close();
         }
 
         private void updateBook(object sender, EventArgs e)
         {
-            Book book = createBook();
+            Book book = new Book();
+            book.Id = int.Parse(tbId.Text);
+            book.Title = tbTitle.Text;
+            book.Author = tbAuthor.Text;
+            book.Publish_year = (int)numPublished.Value;
+            book.Page_count = (int)numPublished.Value;
             Program.stat.updateBook(book);
             this.Close();
         }
@@ -64,7 +54,7 @@ namespace KonyvtarGrafikus
         private void DataLoad()
         {
             Book book = (Book)Program.form1.lbBooks.SelectedItem;
-            numId.Value = (int)book.Id;
+            tbId.Text = book.Id.ToString();
             tbAuthor.Text = book.Author.ToString();
             tbTitle.Text = book.Title.ToString();
             numPageCount.Value = (int)book.Page_count;
@@ -73,20 +63,13 @@ namespace KonyvtarGrafikus
 
         private void newBook(object sender, EventArgs e)
         {
-            Book book = createBook();
-            Program.stat.newBook(book);
-            this.Close();
-        }
-
-        private Book createBook()
-        {
             Book book = new Book();
-            book.Id = (int)numId.Value;
             book.Title = tbTitle.Text;
             book.Author = tbAuthor.Text;
             book.Publish_year = (int)numPublished.Value;
             book.Page_count = (int)numPageCount.Value;
-            return book;
+            Program.stat.newBook(book);
+            this.Close();
         }
     }
 }

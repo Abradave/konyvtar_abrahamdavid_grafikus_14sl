@@ -57,6 +57,7 @@ namespace KonyvtarGrafikus
 
         internal List<Book> getAllBooks() 
         {
+            
             List<Book> books = new List<Book>();
             cmd.CommandText = "SELECT * FROM `books`";
             try 
@@ -86,12 +87,12 @@ namespace KonyvtarGrafikus
         }
 
         internal void newBook(Book book) {
-            cmd = conn.CreateCommand();
-            cmd.Parameters.AddWithValue("id", book.Id);
-            cmd.Parameters.AddWithValue("title", book.Title);
-            cmd.Parameters.AddWithValue("author", book.Author);
-            cmd.Parameters.AddWithValue("publish_year", book.Publish_year);
-            cmd.Parameters.AddWithValue("page_count", book.Page_count);
+            cmd.CommandText = "INSERT INTO `books`(`id`, `title`, `author`, `publish_year`, `page_count`) VALUES (@id, @title, @author, @publish_year, @page_count)";
+            cmd.Parameters.AddWithValue("@id", book.Id);
+            cmd.Parameters.AddWithValue("@title", book.Title);
+            cmd.Parameters.AddWithValue("@author", book.Author);
+            cmd.Parameters.AddWithValue("@publish_year", book.Publish_year);
+            cmd.Parameters.AddWithValue("@page_count", book.Page_count);
             try
             {
                 Connection();
@@ -107,9 +108,9 @@ namespace KonyvtarGrafikus
             }
         }
 
-        internal void deleteBook(Book book) 
+        public void deleteBook(Book book) 
         {
-            cmd.CommandText = "DELETE FROM `books` WHERE `books`.`id`=@id";
+            cmd.CommandText = "DELETE FROM `books` WHERE `id`=@id";
             cmd.Parameters.AddWithValue("@id", book.Id);
             try
             {
@@ -127,14 +128,13 @@ namespace KonyvtarGrafikus
         }
 
         internal void updateBook(Book book) {
-            conn.Open();
-            cmd.CommandText = "UPDATE `books` SET `title`='@title',`author`='@author',`publish_year`='@publish_year',`page_count`='@page_count' WHERE `id`=@id";
+            cmd.CommandText = "UPDATE `books` SET `title`=@title,`author`=@author,`publish_year`=@publish_year,`page_count`=@page_count WHERE `id`=@id";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("id", book.Id);
-            cmd.Parameters.AddWithValue("title", book.Title);
-            cmd.Parameters.AddWithValue("author", book.Author);
-            cmd.Parameters.AddWithValue("publish_year", book.Publish_year);
-            cmd.Parameters.AddWithValue("page_count", book.Page_count);
+            cmd.Parameters.AddWithValue("@id", book.Id);
+            cmd.Parameters.AddWithValue("@title", book.Title);
+            cmd.Parameters.AddWithValue("@author", book.Author);
+            cmd.Parameters.AddWithValue("@publish_year", book.Publish_year);
+            cmd.Parameters.AddWithValue("@page_count", book.Page_count);
             try
             {
                 Connection();
